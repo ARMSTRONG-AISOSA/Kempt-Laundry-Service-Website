@@ -79,7 +79,7 @@ Phone, address, hours, nav, services, prices, FAQs, reviews and client logos are
 - Page structure follows the section rhythm in `design.md`.
 
 ### Images
-- Currently plain `<img>` tags with `object-fit: cover` in fixed-ratio frames. `next/image` isn't used yet. If it's adopted, switch all images at once rather than mixing the two.
+- Currently plain `<img>` tags with `object-fit: cover` in fixed-ratio frames. `next/image` isn't used, and its optimizer is turned off in `next.config.mjs` (see Known risks). If it's adopted, switch all images at once rather than mixing the two, and turn the optimizer back on.
 - Photos go in `public/photos/`. Client logos go in `public/clients/`.
 
 ### SEO and link previews
@@ -111,6 +111,7 @@ On a slow connection, npm/Node can fail with `ETIMEDOUT` even when the internet 
 **Next.js 14 is end of life.** On 2026-10-14, `npm audit --omit=dev` reported 3 issues (1 critical, 2 high) in `next@14.2.35` and its bundled `postcss@8.4.31` / `source-map-js@1.2.1`. They are fixed only in Next ≥ 15.5.24 or 16.x, and Next 14 will get no further patches.
 - Most of the advisories cover features this site doesn't use: middleware, Server Actions, rewrites, custom or Windows servers, CSP nonces, Pages Router i18n.
 - The ones that do apply are DoS issues in React Server Components and issues in the built-in Image Optimization API (`/_next/image`), which is on by default even though the site doesn't use `next/image`.
+- **Mitigation (2026-10-14):** `images: { unoptimized: true }` in `next.config.mjs` turns off `/_next/image` (it now returns 404), which removes the two critical Image Optimizer advisories. Nothing is lost because the site uses plain `<img>`. If `next/image` is adopted later, remove this line, preferably after upgrading Next.
 - **Decision (owner, 2026-10-14):** stay on 14.2.35 for now. Revisit before or soon after launch. The upgrade path is Next 16.x + React 19 + ESLint 9 (flat config, because `next lint` is removed in 16).
 - Don't run `npm audit fix --force`. It jumps to a new major version of Next without the code and tooling changes that requires.
 
