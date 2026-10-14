@@ -23,7 +23,7 @@ Marketing website for **Kempt Laundry Services**, Benin City, Edo, Nigeria. It s
 - **Style direction:** layout from reference template 2 (QuickFold: clean cards, photo-led), personality from template 1 (Breezy: waves, circles, round stickers, circular price badges).
 - **Colours:** only from the logo (navy / blue / sky). The templates' yellow and orange accents were deliberately left out.
 - **CTAs:** "Schedule pickup" and "WhatsApp us". Schedule pickup opens WhatsApp with a prefilled message.
-- **Bulk orders:** a simple quote request form (Services page, `#quote`).
+- **Bulk orders:** a quote request form (Services page, `#quote`). All fields are required, and it sends via a prefilled WhatsApp message (owner, 2026-10-14). Email is to follow.
 - **Photos:** Unsplash stock (free licence). Do NOT use the Google Business photos (the owner says they're poor quality).
 - **Reviews:** six real 5-star Google reviews (in `lib/site.ts`). The slider auto-advances every 5s (changed from 7s by the owner on 2026-10-14).
 - **Next.js version:** stay on 14.2.35 for now, even though 14 is end of life (owner, 2026-10-14). The image optimizer is turned off as a mitigation. See `architecture.md` → Known risks.
@@ -60,6 +60,8 @@ Marketing website for **Kempt Laundry Services**, Benin City, Edo, Nigeria. It s
 15. **Reviews slider** 7s → 5s (`design.md` updated).
 16. **Image optimizer turned off** (`images.unoptimized`). `/_next/image` returns 404 and nothing visible changed.
 17. **Deployed to Vercel:** https://kemptlaundry.vercel.app. Live check on 2026-10-14: all pages 200, 404 works, robots/sitemap/manifest/icons/share images served, canonical and OG tags use the live URL, JSON-LD present once, `/_next/image` 404, quote API validates.
+18. **Quote form sends via WhatsApp (2026-10-14).** Before this, requests were only logged on the server and lost, even though customers were told "we'll be in touch". Now submitting opens WhatsApp with all details prefilled to +234 806 379 4348, all fields are required, and the `/api/quote` stub has been removed.
+19. **`CLAUDE.md`** added so new Claude Code sessions automatically load the project context.
 
 ## Waiting on the owner
 - [ ] **Service areas:** which Benin City districts Kempt picks up from. Goes in `site.areas` and flows into keywords + JSON-LD.
@@ -82,7 +84,7 @@ Marketing website for **Kempt Laundry Services**, Benin City, Edo, Nigeria. It s
 - [ ] **Content update** (see "Waiting on the owner")
 
 ## Backlog
-- [ ] **Quote form backend.** It only logs today. Wire it to email (Resend/Nodemailer) or a Google Sheet. Secrets go in Vercel env vars.
+- [ ] **Quote form → email.** Since 2026-10-14 the form sends via WhatsApp (see Done #18). Next: also email requests to Kempt's inbox with Resend (free plan). Needs a Resend account, the receiving email address, and a `RESEND_API_KEY` env var in Vercel. Optionally log requests to a Google Sheet. Keep WhatsApp as the fallback.
 - [ ] **Next.js upgrade** (deferred by the owner): 16.x + React 19 + ESLint 9. See `architecture.md` → Known risks.
 - [x] **Font weights cleanup (2026-10-14):** DM Sans 600 now loaded (tags, header phone, pills, form labels and tabs render at their intended weight). Unused Montserrat 500 dropped.
 - [ ] `public/photos/machines.jpg` is unused. Use it or delete it.
@@ -92,7 +94,7 @@ Marketing website for **Kempt Laundry Services**, Benin City, Edo, Nigeria. It s
 - [ ] Optional: analytics (e.g. Vercel Analytics). Record it in `architecture.md` if added.
 
 ## File map
-- `app/`: pages (`/`, `/services`, `/pricing`), layout, `globals.css`, quote API, sitemap/robots/manifest, icons
+- `app/`: pages (`/`, `/services`, `/pricing`), layout, `globals.css`, sitemap/robots/manifest, icons
 - `components/`: shared UI
 - `lib/site.ts`: all content (contact details, prices, reviews, FAQs, areas, socials)
 - `lib/seo.ts`: keywords, `pageMeta()`, JSON-LD

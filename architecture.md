@@ -37,7 +37,6 @@ app/                     # App Router: one folder per route
   pricing/page.tsx       # /pricing
   not-found.tsx          # 404 (noindex)
   globals.css            # ALL styles + design tokens
-  api/quote/route.ts     # POST /api/quote (stub: logs only)
   sitemap.ts             # /sitemap.xml (built from `nav`)
   robots.ts              # /robots.txt
   manifest.ts            # /manifest.webmanifest
@@ -95,8 +94,8 @@ Phone, address, hours, nav, services, prices, FAQs, reviews and client logos are
 
 ### Forms and API
 - Route handlers live in `app/api/<name>/route.ts` and return `NextResponse.json({ ok, error? })`.
-- `QuoteForm` POSTs JSON to `/api/quote`. Validation: `name` and `phone` are required, both client-side and server-side.
-- The backend isn't wired up yet (email or Google Sheet to be decided). Secrets go in environment variables (`.env.local` locally, Vercel project settings in production) and never in the code. `.env*.local` is in `.gitignore`.
+- **Bulk quote form (`QuoteForm`), since 2026-10-14:** there's no backend. On submit it builds a prefilled WhatsApp message (`site.whatsapp?text=…`) and opens it in a new tab/app; the customer presses send in WhatsApp. A confirmation card shows a fallback "Tap here" link in case the popup was blocked. All six fields are required (HTML `required`, plus a check for whitespace-only answers).
+- The earlier `/api/quote` stub (which only logged) was removed. When email delivery is added (planned: Resend), create `app/api/quote/route.ts` again, validate on the server too, and keep WhatsApp as the fallback. Secrets go in environment variables (`.env.local` locally, Vercel project settings in production) and never in the code. `.env*.local` is in `.gitignore`.
 
 ## Commands
 

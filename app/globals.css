@@ -205,6 +205,7 @@ h1, h2, h3, p { margin: 0; }
 .form-card input, .form-card select, .form-card textarea { border: 1.5px solid var(--border); border-radius: 12px; padding: 13px 14px; font-size: 15px; color: var(--navy); background: #F8FBFE; outline: none; }
 .form-card input:focus, .form-card select:focus, .form-card textarea:focus { border-color: var(--blue); background: #fff; }
 .form-card textarea { resize: vertical; }
+.form-card select:invalid { color: var(--muted); font-weight: 400; }
 .form-error { font: 500 14px var(--fb); color: #B42318; }
 .sent { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; padding: 24px 0; }
 .sent__tick { width: 56px; height: 56px; border-radius: 50%; background: var(--pale); color: var(--blue); display: flex; align-items: center; justify-content: center; font: 800 26px var(--fh); }

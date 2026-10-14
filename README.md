@@ -34,7 +34,7 @@ Hosted on Vercel (project `kemptlaundry`), connected to this GitHub repo.
 
 ## Pages
 - `/`: Home: hero, how it works, services, sample prices, bulk band, client logo marquee, Google reviews slider
-- `/services`: service groups, express band, bulk quote form (`#quote`)
+- `/services`: service groups, express band, bulk quote form (`#quote`). The form sends the request as a prefilled WhatsApp message (no email yet).
 - `/pricing`: tabbed price list, add-ons, FAQ
 - Shared on every page (from `app/layout.tsx`): sticky header with mobile menu, CTA band, Visit Us (hours + Google Map), footer with developer credit
 - Generated: `/sitemap.xml`, `/robots.txt`, `/manifest.webmanifest`, icons
@@ -63,4 +63,4 @@ All optional. After adding or changing one, redeploy.
 - **Bing Webmaster Tools:** imported from Search Console, sitemap submitted.
 
 ## Still to finish
-See [`progress.md`](progress.md). Main items: real prices, real photos, client logos, a backend for the quote form (it only logs today), service areas and social links.
+See [`progress.md`](progress.md). Main items: real prices, real photos, client logos, email delivery for the quote form (it uses WhatsApp today), service areas and social links.
