@@ -55,8 +55,12 @@ All optional. After adding or changing one, redeploy.
 | Name | Purpose |
 |---|---|
 | `NEXT_PUBLIC_SITE_URL` | Set when a custom domain is connected (e.g. `https://kemptlaundry.com`). Defaults to `https://kemptlaundry.vercel.app`. |
-| `GOOGLE_SITE_VERIFICATION` | Google Search Console verification code (meta tag method) |
-| `BING_SITE_VERIFICATION` | Bing Webmaster Tools verification code (`msvalidate.01`) |
+| `GOOGLE_SITE_VERIFICATION` | Google Search Console verification code (meta tag method). **Set in production. Don't remove it**, or the property stops being verified. |
+| `BING_SITE_VERIFICATION` | Bing Webmaster Tools code (`msvalidate.01`). Not needed today: Bing was imported from Search Console. |
+
+## Search engines
+- **Google Search Console:** property `https://kemptlaundry.vercel.app/` (URL prefix), sitemap submitted.
+- **Bing Webmaster Tools:** imported from Search Console, sitemap submitted.
 
 ## Still to finish
-See [`progress.md`](progress.md). Main items: real prices, real photos, client logos, a backend for the quote form (it only logs today), service areas, social links, Google Search Console and Bing.
+See [`progress.md`](progress.md). Main items: real prices, real photos, client logos, a backend for the quote form (it only logs today), service areas and social links.

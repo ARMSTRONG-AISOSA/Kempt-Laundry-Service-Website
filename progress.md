@@ -29,6 +29,7 @@ Marketing website for **Kempt Laundry Services**, Benin City, Edo, Nigeria. It s
 - **Next.js version:** stay on 14.2.35 for now, even though 14 is end of life (owner, 2026-10-14). The image optimizer is turned off as a mitigation. See `architecture.md` → Known risks.
 - **Share images:** branded cards (logo, headline, teardrop photo), one per page (owner's choice, 2026-10-14).
 - **Hosting:** Vercel, project `kemptlaundry`, auto-deploys from GitHub `main`.
+- **Search engines:** Google Search Console (meta tag via env var) and Bing Webmaster Tools (imported from GSC), both set up on 2026-10-14.
 
 ## Done
 ### Mockup phase (2026-10-13 and before; mockup files since removed)
@@ -73,8 +74,11 @@ Marketing website for **Kempt Laundry Services**, Benin City, Edo, Nigeria. It s
 - [x] SEO (done 2026-10-14; areas + socials still to fill)
 - [x] Sitemap + robots.txt
 - [x] Vercel deployment
-- [ ] **Google Search Console:** verify (DNS isn't possible on a vercel.app address, so use the meta tag via `GOOGLE_SITE_VERIFICATION`) and submit `https://kemptlaundry.vercel.app/sitemap.xml`
-- [ ] **Bing Webmaster Tools:** import from Search Console, or verify via `BING_SITE_VERIFICATION`, then submit the sitemap
+- [x] **Google Search Console (2026-10-14):** URL-prefix property `https://kemptlaundry.vercel.app/`, verified by HTML meta tag (`GOOGLE_SITE_VERIFICATION` env var in Vercel, Production). Sitemap submitted, indexing requested for `/`, `/services` and `/pricing`. Website link added to the Google Business Profile.
+- [x] **Bing Webmaster Tools (2026-10-14):** imported from Google Search Console (no Bing env var needed). Sitemap present, URLs submitted. This also covers DuckDuckGo, Yahoo and ChatGPT search.
+  - **Keep the `GOOGLE_SITE_VERIFICATION` env var in Vercel.** Removing it un-verifies the Search Console property.
+  - Check both dashboards in 1–2 weeks: coverage/indexing, any crawl errors, and the search queries people use.
+  - If a custom domain is added later, add it as a new property in both tools and verify it again.
 - [ ] **Content update** (see "Waiting on the owner")
 
 ## Backlog

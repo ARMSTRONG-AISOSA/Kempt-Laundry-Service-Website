@@ -91,7 +91,7 @@ Phone, address, hours, nav, services, prices, FAQs, reviews and client logos are
 - **Titles:** the root layout uses the template `"%s | Kempt Laundry Services"`. Keep the full title under about 60 characters.
 - **Structured data:** `structuredData()` in `lib/seo.ts` outputs `DryCleaningOrLaundry` + `WebSite` JSON-LD in the root layout. It's built from `site` (address, hours, `areas`, `socials`), so update the data, not the JSON. Don't add `aggregateRating`/`review` markup: Google treats reviews a business publishes about itself as self-serving and ignores or penalises them.
 - **Share images:** 1200×630 JPEG, under 300 KB (WhatsApp's limit for a large preview). Regenerate with `python3 scripts/make-share-images.py` (needs Pillow + Chromium). WhatsApp and Facebook cache previews; use the [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) to refresh them.
-- **Verification:** `GOOGLE_SITE_VERIFICATION` and `BING_SITE_VERIFICATION` env vars add the Search Console and Bing meta tags.
+- **Verification:** `GOOGLE_SITE_VERIFICATION` and `BING_SITE_VERIFICATION` env vars add the Search Console and Bing meta tags. Google is verified this way (keep the env var). Bing was imported from Search Console, so its env var is unused.
 
 ### Forms and API
 - Route handlers live in `app/api/<name>/route.ts` and return `NextResponse.json({ ok, error? })`.
