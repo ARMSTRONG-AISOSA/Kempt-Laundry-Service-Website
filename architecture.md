@@ -14,11 +14,12 @@ _Last updated: 2026-10-14_
 | UI library | React / React DOM | **18.3.1** | Next 14 requires React 18. Don't install React 19. |
 | Language | TypeScript | **5.6.3** | `strict: true`. No plain `.js` source files (`allowJs: false`). |
 | Styling | Plain CSS | n/a | One global stylesheet, `app/globals.css`. No Tailwind, CSS Modules, Sass or CSS-in-JS. |
-| Fonts | `next/font/google` | bundled with Next | Montserrat (headings: 600/700/800) and DM Sans (body: 400/500/700). Self-hosted at build time. |
+| Fonts | `next/font/google` | bundled with Next | Loaded in `app/layout.tsx`: Montserrat 500/600/700/800 (headings, logo) and DM Sans 400/500/700 (body/UI). Self-hosted at build time. The CSS also asks for DM Sans 600, which isn't loaded and renders as 700. Cleanup is in the progress.md backlog. |
 | Linting | ESLint + `eslint-config-next` | **8.57.1** / **14.2.35** | Config: `.eslintrc.json` → `next/core-web-vitals`. Stay on ESLint 8: Next 14's `next lint` doesn't support ESLint 9. |
 | Types | `@types/node`, `@types/react`, `@types/react-dom` | 20.16.11 / 18.3.11 / 18.3.1 | |
 | Runtime (local) | Node.js / npm | 24.19.0 / 11.17.0 | The developer's machine. Any Node ≥ 18.17 works for Next 14. |
-| Hosting | Vercel | n/a | Planned, not deployed yet. Zero config: import the GitHub repo. |
+| Hosting | Vercel | n/a | Live at https://kemptlaundry.vercel.app (project `kemptlaundry`). Git integration: auto-deploys from GitHub `main`. No `vercel.json`; Vercel defaults. See "Deployment". |
+| Source control | Git + GitHub | n/a | https://github.com/ARMSTRONG-AISOSA/Kempt-Laundry-Service-Website, branch `main`. |
 | Maps | Google Maps embed (`<iframe>`) | n/a | The URL is `site.mapEmbed` in `lib/site.ts`. No Maps API key. |
 | Messaging | WhatsApp click-to-chat (`wa.me`) | n/a | "Schedule pickup" opens WhatsApp with a prefilled message. |
 
@@ -49,6 +50,9 @@ public/                  # Static files served from /
   kempt-mark.png         # Logo mark (used in the header/footer logo)
   og/*.jpg               # Social share images, 1200x630 (home, services, pricing)
   photos/*.jpg           # Unsplash stock (1000px wide)
+next.config.mjs          # reactStrictMode + images.unoptimized (see Known risks)
+.eslintrc.json           # next/core-web-vitals
+README.md                # Overview, commands, deploy, env vars
 design.md                # Design system
 architecture.md          # This file
 progress.md              # Progress log and to-dos
@@ -107,12 +111,20 @@ On a slow connection, npm/Node can fail with `ETIMEDOUT` even when the internet 
 `NODE_OPTIONS="--no-network-family-autoselection --dns-result-order=ipv4first" npm install`
 (The same applies to `npm run build`, which downloads Google Fonts.)
 
+`npm run dev` and `npm run build` both write to `.next`. Stop the dev server before a production build, or the two will corrupt each other's output.
+
+## Deployment
+- **Flow:** commit → `git push` to `main` → Vercel builds (`next build`) and replaces the live site. Other branches get preview URLs, which Vercel marks noindex. If a build fails, the previous deployment stays live.
+- **Before pushing:** run `npm run lint` and `npm run build` locally. A type error fails the Vercel build.
+- **Env vars** are set in Vercel → Settings → Environment Variables (see README). Changing one requires a redeploy.
+- **Checks after a deploy that touches SEO:** `/robots.txt`, `/sitemap.xml`, the page's `og:image` URL, and a preview through the Facebook Sharing Debugger.
+
 ## Known risks (accepted)
 **Next.js 14 is end of life.** On 2026-10-14, `npm audit --omit=dev` reported 3 issues (1 critical, 2 high) in `next@14.2.35` and its bundled `postcss@8.4.31` / `source-map-js@1.2.1`. They are fixed only in Next ≥ 15.5.24 or 16.x, and Next 14 will get no further patches.
 - Most of the advisories cover features this site doesn't use: middleware, Server Actions, rewrites, custom or Windows servers, CSP nonces, Pages Router i18n.
 - The ones that do apply are DoS issues in React Server Components and issues in the built-in Image Optimization API (`/_next/image`), which is on by default even though the site doesn't use `next/image`.
 - **Mitigation (2026-10-14):** `images: { unoptimized: true }` in `next.config.mjs` turns off `/_next/image` (it now returns 404), which removes the two critical Image Optimizer advisories. Nothing is lost because the site uses plain `<img>`. If `next/image` is adopted later, remove this line, preferably after upgrading Next.
-- **Decision (owner, 2026-10-14):** stay on 14.2.35 for now. Revisit before or soon after launch. The upgrade path is Next 16.x + React 19 + ESLint 9 (flat config, because `next lint` is removed in 16).
+- **Decision (owner, 2026-10-14):** stay on 14.2.35 for now. Revisit soon after launch (the site went live on 2026-10-14). The upgrade path is Next 16.x + React 19 + ESLint 9 (flat config, because `next lint` is removed in 16).
 - Don't run `npm audit fix --force`. It jumps to a new major version of Next without the code and tooling changes that requires.
 
 ## Not used (on purpose)
