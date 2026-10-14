@@ -1,6 +1,6 @@
 # Kempt Laundry — Progress Log
 
-_Last updated: 2026-10-13_
+_Last updated: 2026-10-14_
 
 ## Project
 Marketing website for **Kempt Laundry Services**, Benin City, Edo, Nigeria. Built as HTML mockups first, then as a Next.js 14 site.
@@ -53,9 +53,9 @@ The owner asked (2026-10-13) to be reminded of these once the build is working:
 - [ ] Confirm the service area (Benin City only? which districts?).
 - [ ] Optional: a dedicated Schedule Pickup page/form (date, time slot, address) instead of the WhatsApp link.
 - [ ] Optional: About/Contact page, business email, social links.
-- [ ] Run `npm install && npm run build` locally. The Next.js code has not been compiled yet, so fix any type/lint issues.
-  - 2026-10-13: `package.json` updated: Next 14.2.15 → 14.2.35 (security fixes), added `eslint@8.57.1` + `eslint-config-next@14.2.35`, and added `.eslintrc.json` (`next/core-web-vitals`). The install was stopped because the internet connection was weak, so `node_modules` is incomplete. Re-run the install, then build, then `git init` + first commit (agreed).
+- [x] **Install, build, lint (2026-10-14).** The build passed with no code changes. Lint: 0 errors, 8 `no-img-element` warnings (expected; we use plain `<img>`). Checked with `next start`: all pages 200, 404 works, quote API returns 200/400 correctly. Git repo initialised on `main`, first commit `fa9edd9`.
   - Network note: on a slow connection Node/npm fails with `ETIMEDOUT` while curl works. Fix: `NODE_OPTIONS="--no-network-family-autoselection --dns-result-order=ipv4first" npm install`
+- [ ] **Next.js upgrade (deferred by owner).** Next 14 is end of life and has unpatched advisories (see `architecture.md` → Known risks). Revisit before or soon after launch.
 - [ ] SEO: LocalBusiness JSON-LD, Open Graph image, sitemap/robots.
 - [ ] Deploy (Vercel) and connect the domain.
 

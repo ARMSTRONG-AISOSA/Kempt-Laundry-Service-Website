@@ -4,13 +4,13 @@ Read this before adding a feature, a dependency or a new page. It records what t
 
 When you change anything listed here (a version, a library, a convention), update this file in the same change.
 
-_Last updated: 2026-10-13_
+_Last updated: 2026-10-14_
 
 ## Stack and versions
 
 | Layer | Technology | Version | Notes |
 |---|---|---|---|
-| Framework | Next.js (App Router) | **14.2.35** | Pinned. Upgraded from 14.2.15 for security fixes. Stay on 14.2.x unless a major upgrade is planned on purpose. |
+| Framework | Next.js (App Router) | **14.2.35** | Pinned. Upgraded from 14.2.15 for security fixes. This is the **final** Next 14 release (14.x is end of life). See "Known risks" below. |
 | UI library | React / React DOM | **18.3.1** | Next 14 requires React 18. Don't install React 19. |
 | Language | TypeScript | **5.6.3** | `strict: true`. No plain `.js` source files (`allowJs: false`). |
 | Styling | Plain CSS | n/a | One global stylesheet, `app/globals.css`. No Tailwind, CSS Modules, Sass or CSS-in-JS. |
@@ -91,6 +91,13 @@ npm run build && npm start
 On a slow connection, npm/Node can fail with `ETIMEDOUT` even when the internet works. Fix:
 `NODE_OPTIONS="--no-network-family-autoselection --dns-result-order=ipv4first" npm install`
 (The same applies to `npm run build`, which downloads Google Fonts.)
+
+## Known risks (accepted)
+**Next.js 14 is end of life.** On 2026-10-14, `npm audit --omit=dev` reported 3 issues (1 critical, 2 high) in `next@14.2.35` and its bundled `postcss@8.4.31` / `source-map-js@1.2.1`. They are fixed only in Next ≥ 15.5.24 or 16.x, and Next 14 will get no further patches.
+- Most of the advisories cover features this site doesn't use: middleware, Server Actions, rewrites, custom or Windows servers, CSP nonces, Pages Router i18n.
+- The ones that do apply are DoS issues in React Server Components and issues in the built-in Image Optimization API (`/_next/image`), which is on by default even though the site doesn't use `next/image`.
+- **Decision (owner, 2026-10-14):** stay on 14.2.35 for now. Revisit before or soon after launch. The upgrade path is Next 16.x + React 19 + ESLint 9 (flat config, because `next lint` is removed in 16).
+- Don't run `npm audit fix --force`. It jumps to a new major version of Next without the code and tooling changes that requires.
 
 ## Not used (on purpose)
 No Tailwind or other CSS framework. No component library (MUI, shadcn, etc.). No state library (Redux, Zustand). No CMS or database. No analytics yet. No Pages Router (`pages/`). If any of these is added later, record the decision and version here.
