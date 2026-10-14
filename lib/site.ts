@@ -14,6 +14,7 @@ export const site = {
     { d: 'Saturday', t: '10:30 AM – 5:00 PM' },
     { d: 'Sunday', t: '1:30 PM – 5:00 PM' },
   ],
+  developer: { name: 'Bossstrong-Dev', href: 'https://bossstrong-dev.vercel.app/' },
 };
 
 export const nav = [

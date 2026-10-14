@@ -242,4 +242,5 @@ h1, h2, h3, p { margin: 0; }
 .footer__text { font: 400 15px/1.6 var(--fb); color: #E3EEF9; }
 .footer__muted { font: 400 14px/1.6 var(--fb); color: #9FC0E6; }
 .footer__phone { font: 700 18px var(--fh); color: #fff; } .footer__phone:hover { color: #8EC8F2; }
-.footer__legal { border-top: 1px solid #22427D; padding-top: 22px; font: 400 13px var(--fb); color: #9FC0E6; }
+.footer__legal { border-top: 1px solid #22427D; padding-top: 22px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font: 400 13px var(--fb); color: #9FC0E6; }
+.footer__credit { font-weight: 700; color: #E3EEF9; } .footer__credit:hover { color: #fff; }

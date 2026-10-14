@@ -7,7 +7,7 @@ export default function VisitUs() {
       <div className="visit">
         <div className="visit__info stack">
           <span className="eyebrow">VISIT US</span>
-          <h2 className="h3xl">Find Kempt in Uselu</h2>
+          <h2 className="h3xl">Find Kempt in Benin</h2>
           <p className="body">{site.address}</p>
           <div className="hours">
             <span className="eyebrow eyebrow--sm">OPENING HOURS</span>

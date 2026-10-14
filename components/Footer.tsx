@@ -26,7 +26,10 @@ export default function Footer() {
           <a href={site.google} target="_blank" rel="noopener" className="footer__link">Google Business profile</a>
         </div>
       </div>
-      <div className="wrap footer__legal">© {new Date().getFullYear()} {site.name}, Benin City.</div>
+      <div className="wrap footer__legal">
+        <span>© {new Date().getFullYear()} {site.name}, Benin City.</span>
+        <span>Developed and maintained by <a href={site.developer.href} target="_blank" rel="noopener" className="footer__credit">{site.developer.name}</a></span>
+      </div>
     </footer>
   );
 }

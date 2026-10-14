@@ -47,7 +47,7 @@ export default function Home() {
 
       <section className="section section--mist">
         <div className="wrap stack-lg">
-          <div className="section-head row-between">
+          <div className="row-between">
             <div className="stack-sm">
               <span className="eyebrow">OUR SERVICES</span>
               <h2 className="h2 maxw-560">From everyday wear to curtains and rugs</h2>
