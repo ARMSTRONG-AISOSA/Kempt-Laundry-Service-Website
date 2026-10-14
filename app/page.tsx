@@ -1,9 +1,19 @@
 import Link from 'next/link';
 import { featured, services, site, steps } from '@/lib/site';
+import { ogImages, pageMeta } from '@/lib/seo';
 import { WaveBottom } from '@/components/Wave';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import LogoMarquee from '@/components/LogoMarquee';
 import Reviews from '@/components/Reviews';
+
+export const metadata = pageMeta({
+  title: `${site.name} | Laundry & Pickup in Benin City`,
+  absoluteTitle: true,
+  description: 'Kempt Laundry Services in Benin City: washing, ironing, starching, duvets, curtains, rugs and shoes. Pickup & delivery, back within 72 hours. Express available.',
+  path: '/',
+  shareTitle: `${site.name}: cleaner clothes, better care`,
+  image: ogImages.home,
+});
 
 export default function Home() {
   return (
@@ -13,7 +23,7 @@ export default function Home() {
           <div className="stack hero__copy">
             <span className="chip">72-HOUR TURNAROUND · BENIN CITY</span>
             <h1 className="h1">Cleaner clothes, <span className="accent">better care.</span></h1>
-            <p className="lead lead--hero">Washing, ironing and starching for everything from school shirts to duvets — picked up from your door and returned fresh within 72 hours.</p>
+            <p className="lead lead--hero">Laundry service in Benin City: washing, ironing and starching for everything from school shirts to duvets — picked up from your door and returned fresh within 72 hours.</p>
             <div className="row">
               <a href={site.pickupHref} target="_blank" rel="noopener" className="btn btn--navy">Schedule a pickup</a>
               <WhatsAppButton />
@@ -21,7 +31,7 @@ export default function Home() {
             <span className="small">Or call <a href={site.phoneHref} className="strong-link">{site.phone}</a></span>
           </div>
           <div className="hero__art">
-            <img className="hero__photo" src="/photos/hero.jpg" alt="Folded knitwear" />
+            <img className="hero__photo" src="/photos/hero.jpg" alt="Freshly washed and folded knitwear" />
             <div className="sticker">Express<br />delivery</div>
             <div className="floatcard"><span>Pickup &amp; delivery</span><strong>Across Benin City</strong></div>
           </div>

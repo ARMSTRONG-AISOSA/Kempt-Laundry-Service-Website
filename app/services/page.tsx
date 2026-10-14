@@ -1,17 +1,23 @@
-import type { Metadata } from 'next';
 import { groups, site } from '@/lib/site';
+import { ogImages, pageMeta } from '@/lib/seo';
 import { WaveBottom } from '@/components/Wave';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import QuoteForm from '@/components/QuoteForm';
 
-export const metadata: Metadata = { title: 'Services — Kempt Laundry Services' };
+export const metadata = pageMeta({
+  title: 'Laundry Services in Benin City',
+  description: 'Washing & folding, ironing & starching, duvet, bedspread, curtain, rug and shoe cleaning in Benin City, plus bulk laundry for schools and churches. Pickup & delivery.',
+  path: '/services',
+  shareTitle: 'Kempt Laundry services: care for everything you wear',
+  image: ogImages.services,
+});
 
 export default function Services() {
   return (
     <>
       <section className="pagehero">
         <div className="wrap stack pagehero__copy">
-          <span className="eyebrow">SERVICES</span>
+          <span className="eyebrow">LAUNDRY SERVICES · BENIN CITY</span>
           <h1 className="h1 h1--page">Care for everything you wear — and sleep on</h1>
           <p className="lead">Every order is washed, ironed and returned within 72 hours. Need it sooner? Ask for express delivery.</p>
         </div>

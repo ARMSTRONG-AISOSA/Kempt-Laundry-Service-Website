@@ -34,13 +34,20 @@ app/                     # App Router: one folder per route
   page.tsx               # /
   services/page.tsx      # /services (bulk quote form at #quote)
   pricing/page.tsx       # /pricing
-  not-found.tsx          # 404
+  not-found.tsx          # 404 (noindex)
   globals.css            # ALL styles + design tokens
   api/quote/route.ts     # POST /api/quote (stub: logs only)
+  sitemap.ts             # /sitemap.xml (built from `nav`)
+  robots.ts              # /robots.txt
+  manifest.ts            # /manifest.webmanifest
+  icon.png, apple-icon.png, favicon.ico   # Square icons (mark on white), picked up automatically by Next
 components/              # Shared UI, one component per file, PascalCase
 lib/site.ts              # ALL site content and data
+lib/seo.ts               # Keywords, pageMeta() helper, structured data (JSON-LD)
+scripts/make-share-images.py   # Regenerates public/og/*.jpg
 public/                  # Static files served from /
-  kempt-mark.png         # Logo mark (also the favicon)
+  kempt-mark.png         # Logo mark (used in the header/footer logo)
+  og/*.jpg               # Social share images, 1200x630 (home, services, pricing)
   photos/*.jpg           # Unsplash stock (1000px wide)
 design.md                # Design system
 architecture.md          # This file
@@ -66,13 +73,21 @@ Phone, address, hours, nav, services, prices, FAQs, reviews and client logos are
 - Combine utility classes (`.stack`, `.row`, `.wrap`, `.section`, `.h2`, `.eyebrow`, …) before writing new CSS.
 
 ### Pages
-- Each page exports `metadata` (at least a `title` in the form `"Page — Kempt Laundry Services"`).
+- Each page exports `metadata = pageMeta({ title, description, path, shareTitle, image })` from `lib/seo.ts`. Don't hand-write `openGraph`/`twitter` objects in pages: Next.js replaces nested metadata objects rather than merging them, so a partial one drops the site name, locale and image.
+- Add every new public page to `nav` in `lib/site.ts` (that also adds it to the sitemap) and give it a share image in `ogImages`.
 - Don't put the shared sections (CTA band, Visit Us, footer) in a page. They come from `layout.tsx`.
 - Page structure follows the section rhythm in `design.md`.
 
 ### Images
 - Currently plain `<img>` tags with `object-fit: cover` in fixed-ratio frames. `next/image` isn't used yet. If it's adopted, switch all images at once rather than mixing the two.
 - Photos go in `public/photos/`. Client logos go in `public/clients/`.
+
+### SEO and link previews
+- **Site address:** `site.url` = `NEXT_PUBLIC_SITE_URL` env var, falling back to `https://kemptlaundry.vercel.app`. It feeds `metadataBase`, canonical links, the sitemap, robots and JSON-LD. When a custom domain is connected, set the env var in Vercel and re-run the share-image script (the domain is printed on the images).
+- **Titles:** the root layout uses the template `"%s | Kempt Laundry Services"`. Keep the full title under about 60 characters.
+- **Structured data:** `structuredData()` in `lib/seo.ts` outputs `DryCleaningOrLaundry` + `WebSite` JSON-LD in the root layout. It's built from `site` (address, hours, `areas`, `socials`), so update the data, not the JSON. Don't add `aggregateRating`/`review` markup: Google treats reviews a business publishes about itself as self-serving and ignores or penalises them.
+- **Share images:** 1200×630 JPEG, under 300 KB (WhatsApp's limit for a large preview). Regenerate with `python3 scripts/make-share-images.py` (needs Pillow + Chromium). WhatsApp and Facebook cache previews; use the [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) to refresh them.
+- **Verification:** `GOOGLE_SITE_VERIFICATION` and `BING_SITE_VERIFICATION` env vars add the Search Console and Bing meta tags.
 
 ### Forms and API
 - Route handlers live in `app/api/<name>/route.ts` and return `NextResponse.json({ ok, error? })`.

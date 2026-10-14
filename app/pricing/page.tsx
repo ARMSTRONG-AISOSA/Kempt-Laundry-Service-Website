@@ -1,17 +1,23 @@
-import type { Metadata } from 'next';
 import Link from 'next/link';
+import { ogImages, pageMeta } from '@/lib/seo';
 import { WaveBottom } from '@/components/Wave';
 import PriceList from '@/components/PriceList';
 import Faq from '@/components/Faq';
 
-export const metadata: Metadata = { title: 'Pricing — Kempt Laundry Services' };
+export const metadata = pageMeta({
+  title: 'Laundry Prices in Benin City',
+  description: 'Per-item laundry prices in Benin City for shirts, native attire, duvets, bedspreads, curtains and sneakers. Starching add-ons, express delivery and bulk quotes.',
+  path: '/pricing',
+  shareTitle: 'Kempt Laundry prices: clear prices, per item',
+  image: ogImages.pricing,
+});
 
 export default function Pricing() {
   return (
     <>
       <section className="pagehero">
         <div className="wrap stack pagehero__copy center-col center">
-          <span className="eyebrow">PRICING</span>
+          <span className="eyebrow">LAUNDRY PRICES · BENIN CITY</span>
           <h1 className="h1 h1--page">Clear prices, per item</h1>
           <p className="lead maxw-540">All prices include washing and ironing, with return within 72 hours. Sample prices shown — final list to be confirmed.</p>
         </div>

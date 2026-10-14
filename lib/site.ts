@@ -1,5 +1,9 @@
 export const site = {
   name: 'Kempt Laundry Services',
+  // Live address. Set NEXT_PUBLIC_SITE_URL (e.g. in Vercel) when a custom domain is connected.
+  url: (process.env.NEXT_PUBLIC_SITE_URL || 'https://kemptlaundry.vercel.app').replace(/\/$/, ''),
+  // Other names people search for — used in structured data for Google.
+  altNames: ['Kempt Laundry', 'Kempt Laundry Service', 'Kempt Laundry Benin', 'Kempt'],
   tagline: 'Cleaner clothes, better care.',
   phone: '+234 806 379 4348',
   phoneHref: 'tel:+2348063794348',
@@ -9,6 +13,23 @@ export const site = {
   mapEmbed:
     'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.790965724113!2d5.588009670415838!3d6.420898810162067!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xafdb20cbcdf43d5b%3A0xf977abf7f60937e4!2sKEMPT%20LAUNDRY%20SERVICES!5e0!3m2!1sen!2sng!4v1791912652813!5m2!1sen!2sng',
   address: '1st Power Line, by Uche Store, Isiohor Road, off Aibalegbe, Uselu, Benin City 302117, Edo State',
+  postal: {
+    street: '1st Power Line, by Uche Store, Isiohor Road, off Aibalegbe, Uselu',
+    city: 'Benin City',
+    region: 'Edo State',
+    postcode: '302117',
+    country: 'NG',
+  },
+  // Pickup areas within Benin City, e.g. ['Uselu', 'Ugbowo']. Only list areas Kempt really serves.
+  areas: [] as string[],
+  // Social profiles — paste full URLs when the pages are created. Empty ones are ignored.
+  socials: { instagram: '', facebook: '', tiktok: '', x: '' },
+  // Opening hours for Google (24h). Keep in sync with `hours` above.
+  openingHours: [
+    { days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '08:00', closes: '18:30' },
+    { days: ['Saturday'], opens: '10:30', closes: '17:00' },
+    { days: ['Sunday'], opens: '13:30', closes: '17:00' },
+  ],
   hours: [
     { d: 'Mon – Fri', t: '8:00 AM – 6:30 PM' },
     { d: 'Saturday', t: '10:30 AM – 5:00 PM' },

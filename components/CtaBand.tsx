@@ -12,7 +12,7 @@ export default function CtaBand() {
           <WhatsAppButton variant="pale" />
         </div>
       </div>
-      <img className="cta-photo" src="/photos/frontload.jpg" alt="Washing machines" />
+      <img className="cta-photo" src="/photos/frontload.jpg" alt="Washing machines at Kempt Laundry" />
     </section>
   );
 }

@@ -37,10 +37,10 @@ Marketing website for **Kempt Laundry Services**, Benin City, Edo, Nigeria. Buil
 
 ## Remind the owner after resuming
 The owner asked (2026-10-13) to be reminded of these once the build is working:
-- [ ] **SEO:** page titles/descriptions, LocalBusiness JSON-LD, Open Graph image
+- [x] **SEO (2026-10-14):** per-page titles/descriptions/canonicals, keywords, Open Graph + X cards with branded 1200×630 share images, `DryCleaningOrLaundry` + `WebSite` JSON-LD, square icons + manifest, keyword-friendly copy tweaks. Still to fill in: `site.areas` and `site.socials` (the owner will send these).
 - [ ] **Content update:** real prices, photos, client logos, express/pickup wording
-- [ ] **Vercel deployment** and connecting the domain
-- [ ] **Sitemap** (`sitemap.xml`) and `robots.txt`
+- [ ] **Vercel deployment:** the project must be named `kemptlaundry` to get `kemptlaundry.vercel.app` (free as of 2026-10-14)
+- [x] **Sitemap** (`/sitemap.xml`) and `/robots.txt` (2026-10-14)
 - [ ] **Google Search Console:** verify the site and submit the sitemap
 - [ ] **Bing Webmaster Tools:** verify the site and submit the sitemap
 
@@ -56,7 +56,7 @@ The owner asked (2026-10-13) to be reminded of these once the build is working:
 - [x] **Install, build, lint (2026-10-14).** The build passed with no code changes. Lint: 0 errors, 8 `no-img-element` warnings (expected; we use plain `<img>`). Checked with `next start`: all pages 200, 404 works, quote API returns 200/400 correctly. Git repo initialised on `main`, first commit `fa9edd9`.
   - Network note: on a slow connection Node/npm fails with `ETIMEDOUT` while curl works. Fix: `NODE_OPTIONS="--no-network-family-autoselection --dns-result-order=ipv4first" npm install`
 - [ ] **Next.js upgrade (deferred by owner).** Next 14 is end of life and has unpatched advisories (see `architecture.md` → Known risks). Revisit before or soon after launch.
-- [ ] SEO: LocalBusiness JSON-LD, Open Graph image, sitemap/robots.
+- [x] SEO: LocalBusiness JSON-LD, Open Graph image, sitemap/robots (see above).
 - [ ] Deploy (Vercel) and connect the domain.
 
 ## File map
