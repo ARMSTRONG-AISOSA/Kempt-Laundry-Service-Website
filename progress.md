@@ -98,6 +98,7 @@ Marketing website for **Kempt Laundry Services**, Benin City, Edo, Nigeria. It s
 - `lib/seo.ts`: keywords, `pageMeta()`, JSON-LD
 - `public/`: logo mark, stock photos, share images (`og/`)
 - `scripts/make-share-images.py`: regenerates the share images
+- `CLAUDE.md`: loaded automatically by Claude Code each session; points to these docs
 - `README.md`: overview, commands, deploy, env vars
 - `architecture.md`: tech stack, versions and code conventions. Read before adding features or dependencies.
 - `design.md`: the design system. Read before changing any design.
