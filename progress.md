@@ -39,6 +39,7 @@ Marketing website for **Kempt Laundry Services**, Benin City, Edo, Nigeria. Buil
 The owner asked (2026-10-13) to be reminded of these once the build is working:
 - [x] **SEO (2026-10-14):** per-page titles/descriptions/canonicals, keywords, Open Graph + X cards with branded 1200×630 share images, `DryCleaningOrLaundry` + `WebSite` JSON-LD, square icons + manifest, keyword-friendly copy tweaks. Still to fill in: `site.areas` and `site.socials` (the owner will send these).
 - [ ] **Content update:** real prices, photos, client logos, express/pickup wording
+- [x] **Pushed to GitHub (2026-10-14):** https://github.com/ARMSTRONG-AISOSA/Kempt-Laundry-Service-Website (`main`, remote uses SSH)
 - [ ] **Vercel deployment:** the project must be named `kemptlaundry` to get `kemptlaundry.vercel.app` (free as of 2026-10-14)
 - [x] **Sitemap** (`/sitemap.xml`) and `/robots.txt` (2026-10-14)
 - [ ] **Google Search Console:** verify the site and submit the sitemap
