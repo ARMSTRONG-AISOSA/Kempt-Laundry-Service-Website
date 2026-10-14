@@ -34,9 +34,8 @@ Contrast: body text must meet 4.5:1. Navy text on sky is fine; white text on sky
 
 ## Typography
 - **Headings:** Montserrat (it echoes the logo's geometric caps). Weights 700 and 800, plus 600 only for the "LAUNDRY" wordmark.
-- **Body/UI:** DM Sans. Weights 400, 500 and 700.
-- No other fonts.
-- Known gap: some UI rules (tags, header phone, navy pills, form labels, tabs) ask for DM Sans 600, which isn't loaded, so they render as 700. Don't add more 600s. This is in the progress.md backlog to resolve.
+- **Body/UI:** DM Sans. Weights 400, 500, 600 and 700. 600 is for compact UI labels: tags, the header phone, navy pills, form labels, tabs.
+- No other fonts. Any new weight must also be added to the font loader in `app/layout.tsx`.
 
 | Role | Spec |
 |---|---|

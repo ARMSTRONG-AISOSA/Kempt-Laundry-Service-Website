@@ -8,8 +8,8 @@ import CtaBand from '@/components/CtaBand';
 import { site } from '@/lib/site';
 import { keywords, structuredData } from '@/lib/seo';
 
-const heading = Montserrat({ subsets: ['latin'], weight: ['500', '600', '700', '800'], variable: '--font-heading' });
-const body = DM_Sans({ subsets: ['latin'], weight: ['400', '500', '700'], variable: '--font-body' });
+const heading = Montserrat({ subsets: ['latin'], weight: ['600', '700', '800'], variable: '--font-heading' });
+const body = DM_Sans({ subsets: ['latin'], weight: ['400', '500', '600', '700'], variable: '--font-body' });
 
 // Defaults for every page. Pages set their own title/description/share image via pageMeta().
 export const metadata: Metadata = {

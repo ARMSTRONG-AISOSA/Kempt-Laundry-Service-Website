@@ -80,7 +80,7 @@ Marketing website for **Kempt Laundry Services**, Benin City, Edo, Nigeria. It s
 ## Backlog
 - [ ] **Quote form backend.** It only logs today. Wire it to email (Resend/Nodemailer) or a Google Sheet. Secrets go in Vercel env vars.
 - [ ] **Next.js upgrade** (deferred by the owner): 16.x + React 19 + ESLint 9. See `architecture.md` → Known risks.
-- [ ] **Font weights cleanup:** the CSS uses DM Sans 600 (tags, header phone, pill-navy, form labels, tabs), but the layout loads only 400/500/700, so 600 renders as 700. Montserrat 500 is loaded but unused. Either load DM Sans 600 or change those rules to 500/700, then update `design.md`.
+- [x] **Font weights cleanup (2026-10-14):** DM Sans 600 now loaded (tags, header phone, pills, form labels and tabs render at their intended weight). Unused Montserrat 500 dropped.
 - [ ] `public/photos/machines.jpg` is unused. Use it or delete it.
 - [ ] Optional: a dedicated Schedule Pickup page/form (date, time slot, address) instead of the WhatsApp link.
 - [ ] Optional: About/Contact page, business email, social icons in the footer.

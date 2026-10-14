@@ -14,7 +14,7 @@ _Last updated: 2026-10-14_
 | UI library | React / React DOM | **18.3.1** | Next 14 requires React 18. Don't install React 19. |
 | Language | TypeScript | **5.6.3** | `strict: true`. No plain `.js` source files (`allowJs: false`). |
 | Styling | Plain CSS | n/a | One global stylesheet, `app/globals.css`. No Tailwind, CSS Modules, Sass or CSS-in-JS. |
-| Fonts | `next/font/google` | bundled with Next | Loaded in `app/layout.tsx`: Montserrat 500/600/700/800 (headings, logo) and DM Sans 400/500/700 (body/UI). Self-hosted at build time. The CSS also asks for DM Sans 600, which isn't loaded and renders as 700. Cleanup is in the progress.md backlog. |
+| Fonts | `next/font/google` | bundled with Next | Loaded in `app/layout.tsx`: Montserrat 600/700/800 (headings, logo) and DM Sans 400/500/600/700 (body/UI). Self-hosted at build time. Load exactly the weights the CSS uses. If you add or remove a weight in `globals.css`, update the list here and in `layout.tsx`. |
 | Linting | ESLint + `eslint-config-next` | **8.57.1** / **14.2.35** | Config: `.eslintrc.json` → `next/core-web-vitals`. Stay on ESLint 8: Next 14's `next lint` doesn't support ESLint 9. |
 | Types | `@types/node`, `@types/react`, `@types/react-dom` | 20.16.11 / 18.3.11 / 18.3.1 | |
 | Runtime (local) | Node.js / npm | 24.19.0 / 11.17.0 | The developer's machine. Any Node ≥ 18.17 works for Next 14. |
