@@ -101,7 +101,7 @@ Shadows are soft, navy-tinted and only used on floating things:
 
 ## Motion
 - Minimal. Logo marquee: 28s linear loop, pauses on hover, off with `prefers-reduced-motion`.
-- Reviews auto-advance every 7s and pause on hover. Dots animate width 8→26px.
+- Reviews auto-advance every 5s and pause on hover. Dots animate width 8→26px.
 - Hover transitions are 150ms on colour/border only. No bouncing, no parallax.
 
 ## Voice & copy

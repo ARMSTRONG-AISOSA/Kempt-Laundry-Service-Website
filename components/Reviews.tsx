@@ -18,7 +18,7 @@ export default function Reviews() {
   const n = reviews.length;
   useEffect(() => {
     if (paused) return;
-    const t = setInterval(() => setI((v) => (v + 1) % n), 7000);
+    const t = setInterval(() => setI((v) => (v + 1) % n), 5000);
     return () => clearInterval(t);
   }, [paused, n]);
   const r = reviews[i];
